@@ -4,8 +4,8 @@ import requests
 from dotenv import load_dotenv
 
 load_dotenv()
-API_KEY = os.getenv("API_KEY")
-CHANNEL_ID = os.getenv("CHANNEL_ID")
+API_KEY = os.getenv("EXPO_PUBLIC_API_KEY")
+CHANNEL_ID = os.getenv("EXPO_PUBLIC_CHANNEL_ID")
 
 # 1. Get video ID and title
 step1 = requests.get("https://www.googleapis.com/youtube/v3/search",
@@ -58,6 +58,7 @@ while True:
         "key": API_KEY,
         "liveChatId": chat_id,
         "part": "snippet,authorDetails",
+        "fields": "nextPageToken,items(id,snippet/displayMessage,authorDetails/displayName,authorDetails/profileImageUrl,authorDetails/isVerified,authorDetails/isChatOwner,authorDetails/isChatSponsor,authorDetails/isChatModerator)"
     }
     if next_page_token:
         params["pageToken"] = next_page_token
@@ -116,3 +117,4 @@ while True:
 # https://developers.google.com/youtube/v3/live/docs/superChatEvents/list (Super Chat)
 # https://developers.google.com/youtube/v3/live/docs/liveChatBans/insert (Ban User)
 # Pool?
+# https://developers.google.com/youtube/v3/live/docs/liveChatModerators/list (Mods)

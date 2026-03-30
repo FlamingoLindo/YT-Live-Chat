@@ -2,10 +2,17 @@ version: "0.2"
 ignorePaths:
   - .env
   - .gitignore
+  - app.json
+  - package-lock.json
+  - package.json
+  - mock_data.ts
+  - i18n/locales/pt_br.json
+  - i18n/index.ts
 dictionaryDefinitions: []
 dictionaries: []
 words:
   - dotenv
   - Millis
+  - Pressable
 ignoreWords: []
 import: []
