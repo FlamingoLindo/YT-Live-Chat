@@ -1,4 +1,5 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, StyleSheet, Text, TouchableOpacity, useColorScheme, View } from "react-native";
@@ -12,22 +13,23 @@ interface Props {
 export default function ContextMenu({ insets, onToggleStream, showStream }: Props) {
     const colorScheme = useColorScheme();
     const isDarkMode = colorScheme === "dark";
+    const router = useRouter();
     const [isOpen, setIsOpen] = useState(false);
     const { t, i18n } = useTranslation();
     const isPortuguese = (i18n.resolvedLanguage ?? i18n.language).toLowerCase().startsWith('pt');
 
     const colors = {
-        background: isDarkMode ? '#1e1e1e' : 'white',
+        background: isDarkMode ? '#2e2e2e' : 'white',
         icon: isDarkMode ? 'white' : 'black',
-        text: isDarkMode ? '#f0f0f0' : '#1a1a1a',
-        separator: isDarkMode ? '#2e2e2e' : '#f0f0f0',
+        text: isDarkMode ? '#ffffff' : '#000000',
+        separator: isDarkMode ? '#000000' : '#ffffff',
         active: '#FF0000',
     };
 
     const options = [
         { id: 1, title: showStream ? t('Close Preview') : t('Open Preview'), onPress: onToggleStream },
-        { id: 2, title: t('Super chats'), onPress: () => { } },
-        { id: 3, title: t('Moderators'), onPress: () => { } },
+        { id: 2, title: t('Super chats'), onPress: () => { router.navigate('/(super)'), setIsOpen(false) } },
+        { id: 3, title: t('Moderators'), onPress: () => { router.navigate('/(mods)'), setIsOpen(false) } },
         {
             id: 4,
             title: t('Change to PT/BR'),
@@ -41,7 +43,7 @@ export default function ContextMenu({ insets, onToggleStream, showStream }: Prop
         <View style={[styles.view, { top: insets.top + 100 }]}>
             <Pressable onPress={() => setIsOpen(!isOpen)}>
                 <View style={[styles.container, { backgroundColor: colors.background }]}>
-                    <Ionicons name={isOpen ? "chevron-down" : "chevron-up"} size={15} color={colors.icon} />
+                    <Ionicons name={isOpen ? "chevron-up" : "chevron-down"} size={15} color={colors.icon} />
                 </View>
             </Pressable>
             {isOpen && (
@@ -83,17 +85,19 @@ const styles = StyleSheet.create({
         borderRadius: 6,
         alignItems: 'center',
         justifyContent: 'center',
+        borderColor: 'white',
+        borderWidth: 1
     },
     optContainer: {
         marginTop: 8,
         width: 200,
-        borderRadius: 6,
-        overflow: 'hidden',
+        overflow: 'visible',
     },
     optRow: {
         height: 45,
         justifyContent: 'center',
         paddingHorizontal: 14,
+        backgroundColor: '#2e2e2e'
     },
     optText: {
         fontSize: 15,

@@ -15,7 +15,7 @@ export default function Index() {
 
   const [showStream, setShowStream] = useState(false);
 
-  const STREAM_ID = "nTFXkCV64Ew";
+  const STREAM_ID = "4Uhp_xRikaU";
 
 
   return (
@@ -25,7 +25,7 @@ export default function Index() {
       <ScrollView
         ref={scrollRef}
         onContentSizeChange={() => scrollRef.current?.scrollToEnd({ animated: true })}
-        style={[styles.view, { backgroundColor: isDarkMode ? "#121212" : "#f5f5f5" }]}
+        style={[styles.view, { backgroundColor: isDarkMode ? "#000000" : "#ffffff" }]}
         contentContainerStyle={{ paddingBottom: insets.bottom }}>
         <UserCard />
       </ScrollView>

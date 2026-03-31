@@ -514,6 +514,295 @@ export const step_3 = {
                 "isChatSponsor": false,
                 "isChatModerator": false
             }
+        },
+        {
+            "id": "LCC.SuperChatExampleId12345",
+            "snippet": {
+                "type": "superChatEvent",
+                "displayMessage": "Conteúdo incrível, continuem assim! 🔥",
+                "superChatDetails": {
+                    "amountMicros": "10000000",
+                    "currency": "BRL",
+                    "amountDisplayString": "R$10,00",
+                    "userComment": "Conteúdo incrível, continuem assim! 🔥",
+                    "tier": 3
+                }
+            },
+            "authorDetails": {
+                "displayName": "@superFã123",
+                "profileImageUrl": "https://yt3.ggpht.com/ytc/AIdro_mzqtiUu7CAYCH9NFkLaWWRd9OdXlLW18bLilGgrtsTjw0=s88-c-k-c0x00ffffff-no-rj",
+                "isVerified": false,
+                "isChatOwner": false,
+                "isChatSponsor": true,
+                "isChatModerator": false
+            }
+        },
+        {
+            "id": "LCC.SuperChatExaapleId12345",
+            "snippet": {
+                "type": "superChatEvent",
+                "displayMessage": "Conteúdo incrível, continuem assim!! 🔥",
+                "superChatDetails": {
+                    "amountMicros": "10000000",
+                    "currency": "BRL",
+                    "amountDisplayString": "USD$10,00",
+                    "userComment": "Conteúdo incrível, continuem assim! 🔥",
+                    "tier": 3
+                }
+            },
+            "authorDetails": {
+                "displayName": "@superFã123",
+                "profileImageUrl": "https://yt3.ggpht.com/ytc/AIdro_mzqtiUu7CAYCH9NFkLaWWRd9OdXlLW18bLilGgrtsTjw0=s88-c-k-c0x00ffffff-no-rj",
+                "isVerified": false,
+                "isChatOwner": false,
+                "isChatSponsor": true,
+                "isChatModerator": false
+            }
+        }
+    ]
+}
+
+export const moderators_error = {
+    "error": {
+        "code": 403,
+        "message": "The caller does not have permission",
+        "errors": [
+            {
+                "message": "The caller does not have permission",
+                "domain": "global",
+                "reason": "forbidden"
+            }
+        ],
+        "status": "PERMISSION_DENIED"
+    }
+}
+
+export const moderators = {
+    "kind": "youtube#liveChatModeratorListResponse",
+    "etag": "etag",
+    "prevPageToken": "string",
+    "nextPageToken": "string",
+    "pageInfo": {
+        "totalResults": 10,
+        "resultsPerPage": 10
+    },
+    "items": [
+        {
+            "kind": "youtube#liveChatModerator",
+            "etag": "etag",
+            "id": "string",
+            "snippet": {
+                "moderatorDetails": {
+                    "channelId": "string",
+                    "channelUrl": "string",
+                    "displayName": "Mod",
+                    "profileImageUrl": "https://yt3.ggpht.com/PC1ayw7LXbygjHvcx4Mf9F_yucOuUN8nY5PhPItdL5-yTVCpPJ7rFTQPmmm-GfDb0-fM08LSVto=s88-c-k-c0x00ffffff-no-rj"
+                },
+                "liveChatId": "Cg0KCzRVaHBfeFJpa2FVKicKGFVDdmR3aGhfZkR5V2NjUjQyLXJSZVpMdxILNFVocF94UmlrYVU"
+            }
+        },
+        {
+            "kind": "youtube#liveChatModerator",
+            "etag": "etag",
+            "id": "string2",
+            "snippet": {
+                "moderatorDetails": {
+                    "channelId": "string2",
+                    "channelUrl": "string2",
+                    "displayName": "Mod2",
+                    "profileImageUrl": "https://yt3.ggpht.com/PC1ayw7LXbygjHvcx4Mf9F_yucOuUN8nY5PhPItdL5-yTVCpPJ7rFTQPmmm-GfDb0-fM08LSVto=s88-c-k-c0x00ffffff-no-rj"
+                },
+                "liveChatId": "Cg0KCzRVaHBfeFJpa2FVKicKGFVDdmR3aGhfZkR5V2NjUjQyLXJSZVpMdxILNFVocF94UmlrYVU"
+            }
+        },
+        {
+            "kind": "youtube#liveChatModerator",
+            "etag": "etag",
+            "id": "string3",
+            "snippet": {
+                "moderatorDetails": {
+                    "channelId": "string3",
+                    "channelUrl": "string3",
+                    "displayName": "Mod3",
+                    "profileImageUrl": "https://yt3.ggpht.com/PC1ayw7LXbygjHvcx4Mf9F_yucOuUN8nY5PhPItdL5-yTVCpPJ7rFTQPmmm-GfDb0-fM08LSVto=s88-c-k-c0x00ffffff-no-rj"
+                },
+                "liveChatId": "Cg0KCzRVaHBfeFJpa2FVKicKGFVDdmR3aGhfZkR5V2NjUjQyLXJSZVpMdxILNFVocF94UmlrYVU"
+            }
+        },
+        {
+            "kind": "youtube#liveChatModerator",
+            "etag": "etag",
+            "id": "string234",
+            "snippet": {
+                "moderatorDetails": {
+                    "channelId": "string34",
+                    "channelUrl": "string43",
+                    "displayName": "Mod3",
+                    "profileImageUrl": "https://yt3.ggpht.com/PC1ayw7LXbygjHvcx4Mf9F_yucOuUN8nY5PhPItdL5-yTVCpPJ7rFTQPmmm-GfDb0-fM08LSVto=s88-c-k-c0x00ffffff-no-rj"
+                },
+                "liveChatId": "Cg0KCzRVaHBfeFJpa2FVKicKGFVDdmR3aGhfZkR5V2NjUjQyLXJSZVpMdxILNFVocF94UmlrYVU"
+            }
+        },
+        {
+            "kind": "youtube#liveChatModerator",
+            "etag": "etag",
+            "id": "string36",
+            "snippet": {
+                "moderatorDetails": {
+                    "channelId": "string23",
+                    "channelUrl": "string31",
+                    "displayName": "Mod3",
+                    "profileImageUrl": "https://yt3.ggpht.com/PC1ayw7LXbygjHvcx4Mf9F_yucOuUN8nY5PhPItdL5-yTVCpPJ7rFTQPmmm-GfDb0-fM08LSVto=s88-c-k-c0x00ffffff-no-rj"
+                },
+                "liveChatId": "Cg0KCzRVaHBfeFJpa2FVKicKGFVDdmR3aGhfZkR5V2NjUjQyLXJSZVpMdxILNFVocF94UmlrYVU"
+            }
+        },
+        {
+            "kind": "youtube#liveChatModerator",
+            "etag": "etag",
+            "id": "string35",
+            "snippet": {
+                "moderatorDetails": {
+                    "channelId": "string53",
+                    "channelUrl": "string43",
+                    "displayName": "Mod3",
+                    "profileImageUrl": "https://yt3.ggpht.com/PC1ayw7LXbygjHvcx4Mf9F_yucOuUN8nY5PhPItdL5-yTVCpPJ7rFTQPmmm-GfDb0-fM08LSVto=s88-c-k-c0x00ffffff-no-rj"
+                },
+                "liveChatId": "Cg0KCzRVaHBfeFJpa2FVKicKGFVDdmR3aGhfZkR5V2NjUjQyLXJSZVpMdxILNFVocF94UmlrYVU"
+            }
+        },
+        {
+            "kind": "youtube#liveChatModerator",
+            "etag": "etag",
+            "id": "string34",
+            "snippet": {
+                "moderatorDetails": {
+                    "channelId": "string37",
+                    "channelUrl": "string8",
+                    "displayName": "Mod3",
+                    "profileImageUrl": "https://yt3.ggpht.com/PC1ayw7LXbygjHvcx4Mf9F_yucOuUN8nY5PhPItdL5-yTVCpPJ7rFTQPmmm-GfDb0-fM08LSVto=s88-c-k-c0x00ffffff-no-rj"
+                },
+                "liveChatId": "Cg0KCzRVaHBfeFJpa2FVKicKGFVDdmR3aGhfZkR5V2NjUjQyLXJSZVpMdxILNFVocF94UmlrYVU"
+            }
+        },
+        {
+            "kind": "youtube#liveChatModerator",
+            "etag": "etag",
+            "id": "string355",
+            "snippet": {
+                "moderatorDetails": {
+                    "channelId": "string53",
+                    "channelUrl": "string35",
+                    "displayName": "Mod3",
+                    "profileImageUrl": "https://yt3.ggpht.com/PC1ayw7LXbygjHvcx4Mf9F_yucOuUN8nY5PhPItdL5-yTVCpPJ7rFTQPmmm-GfDb0-fM08LSVto=s88-c-k-c0x00ffffff-no-rj"
+                },
+                "liveChatId": "Cg0KCzRVaHBfeFJpa2FVKicKGFVDdmR3aGhfZkR5V2NjUjQyLXJSZVpMdxILNFVocF94UmlrYVU"
+            }
+        },
+        {
+            "kind": "youtube#liveChatModerator",
+            "etag": "etag",
+            "id": "strin2g3",
+            "snippet": {
+                "moderatorDetails": {
+                    "channelId": "string23",
+                    "channelUrl": "stri1ng3",
+                    "displayName": "Mod32",
+                    "profileImageUrl": "https://yt3.ggpht.com/PC1ayw7LXbygjHvcx4Mf9F_yucOuUN8nY5PhPItdL5-yTVCpPJ7rFTQPmmm-GfDb0-fM08LSVto=s88-c-k-c0x00ffffff-no-rj"
+                },
+                "liveChatId": "Cg0KCzRVaHBfeFJpa2FVKicKGFVDdmR3aGhfZkR5V2NjUjQyLXJSZVpMdxILNFVocF94UmlrYVU"
+            }
+        },
+        {
+            "kind": "youtube#liveChatModerator",
+            "etag": "etag",
+            "id": "strin23",
+            "snippet": {
+                "moderatorDetails": {
+                    "channelId": "str4ing3",
+                    "channelUrl": "stri4ng3",
+                    "displayName": "Mod3",
+                    "profileImageUrl": "https://yt3.ggpht.com/PC1ayw7LXbygjHvcx4Mf9F_yucOuUN8nY5PhPItdL5-yTVCpPJ7rFTQPmmm-GfDb0-fM08LSVto=s88-c-k-c0x00ffffff-no-rj"
+                },
+                "liveChatId": "Cg0KCzRVaHBfeFJpa2FVKicKGFVDdmR3aGhfZkR5V2NjUjQyLXJSZVpMdxILNFVocF94UmlrYVU"
+            }
+        },
+        {
+            "kind": "youtube#liveChatModerator",
+            "etag": "etag",
+            "id": "strin223",
+            "snippet": {
+                "moderatorDetails": {
+                    "channelId": "str4ing23",
+                    "channelUrl": "stri4ng23",
+                    "displayName": "Mod2223",
+                    "profileImageUrl": "https://yt3.ggpht.com/PC1ayw7LXbygjHvcx4Mf9F_yucOuUN8nY5PhPItdL5-yTVCpPJ7rFTQPmmm-GfDb0-fM08LSVto=s88-c-k-c0x00ffffff-no-rj"
+                },
+                "liveChatId": "Cg0KCzRVaHBfeFJpa2FVKicKGFVDdmR3aGhfZkR5V2NjUjQyLXJSZVpMdxILNFVocF94UmlrYVU"
+            }
+        },
+        {
+            "kind": "youtube#liveChatModerator",
+            "etag": "etag",
+            "id": "strin21113",
+            "snippet": {
+                "moderatorDetails": {
+                    "channelId": "str4ing31",
+                    "channelUrl": "stri4ng13",
+                    "displayName": "Mod13",
+                    "profileImageUrl": "https://yt3.ggpht.com/PC1ayw7LXbygjHvcx4Mf9F_yucOuUN8nY5PhPItdL5-yTVCpPJ7rFTQPmmm-GfDb0-fM08LSVto=s88-c-k-c0x00ffffff-no-rj"
+                },
+                "liveChatId": "Cg0KCzRVaHBfeFJpa2FVKicKGFVDdmR3aGhfZkR5V2NjUjQyLXJSZVpMdxILNFVocF94UmlrYVU"
+            }
+        }
+    ]
+}
+
+export const superChats = {
+    "super_chats": [
+        {
+            "id": "LCC.SuperChatExaapleId12345",
+            "snippet": {
+                "type": "superChatEvent",
+                "displayMessage": "Conteúdo incrível, continuem assim!! 🔥",
+                "superChatDetails": {
+                    "amountMicros": "10000000",
+                    "currency": "BRL",
+                    "amountDisplayString": "USD$10,00",
+                    "userComment": "Conteúdo incrível, continuem assim! 🔥",
+                    "tier": 3
+                }
+            },
+            "authorDetails": {
+                "displayName": "@superFã123",
+                "profileImageUrl": "https://yt3.ggpht.com/ytc/AIdro_mzqtiUu7CAYCH9NFkLaWWRd9OdXlLW18bLilGgrtsTjw0=s88-c-k-c0x00ffffff-no-rj",
+                "isVerified": false,
+                "isChatOwner": false,
+                "isChatSponsor": true,
+                "isChatModerator": false
+            }
+        },
+        {
+            "id": "LCC.SuperChatExaapleId13345",
+            "snippet": {
+                "type": "superChatEvent",
+                "displayMessage": "Conteúdo incrível, continuem assim!! 🔥",
+                "superChatDetails": {
+                    "amountMicros": "10000000",
+                    "currency": "BRL",
+                    "amountDisplayString": "USD$10,00",
+                    "userComment": "Conteúdo incrível, continuem assim! 🔥",
+                    "tier": 3
+                }
+            },
+            "authorDetails": {
+                "displayName": "@superFã222",
+                "profileImageUrl": "https://yt3.ggpht.com/ytc/AIdro_mzqtiUu7CAYCH9NFkLaWWRd9OdXlLW18bLilGgrtsTjw0=s88-c-k-c0x00ffffff-no-rj",
+                "isVerified": false,
+                "isChatOwner": false,
+                "isChatSponsor": true,
+                "isChatModerator": false
+            }
         }
     ]
 }

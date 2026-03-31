@@ -59,6 +59,7 @@ while True:
         "liveChatId": chat_id,
         "part": "snippet,authorDetails",
         "fields": "nextPageToken,items(id,snippet/displayMessage,authorDetails/displayName,authorDetails/profileImageUrl,authorDetails/isVerified,authorDetails/isChatOwner,authorDetails/isChatSponsor,authorDetails/isChatModerator)"
+        # nextPageToken,items(id,snippet(type,displayMessage,superChatDetails),authorDetails(displayName,profileImageUrl,isVerified,isChatOwner,isChatSponsor,isChatModerator))
     }
     if next_page_token:
         params["pageToken"] = next_page_token

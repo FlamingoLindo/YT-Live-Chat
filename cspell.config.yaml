@@ -11,7 +11,9 @@ ignorePaths:
 dictionaryDefinitions: []
 dictionaries: []
 words:
+  - chatbubble
   - dotenv
+  - gorhom
   - Millis
   - Pressable
 ignoreWords: []

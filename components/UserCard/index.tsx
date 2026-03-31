@@ -1,13 +1,24 @@
 import { step_3 } from "@/mock_data";
+import { useCallback, useState } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import MessageCard from "../MessageCard";
 
+
 export default function UserCard() {
+    const [isSheetShowing, setIsSheetShowing] = useState(false);
+
+    const handleOpen = useCallback(() => {
+        setIsSheetShowing(true);
+    }, []);
+
+
     return (
         <View style={styles.view}>
             {step_3.items.map((item) => (
                 <View key={item.id}>
-                    <TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={handleOpen}
+                    >
                         <View style={styles.container}>
                             <Image src={item.authorDetails.profileImageUrl} width={30} height={30} style={styles.pfp} />
                             <View style={[
@@ -26,14 +37,22 @@ export default function UserCard() {
                         </View>
                     </TouchableOpacity>
 
-                    <MessageCard message={item.snippet.displayMessage} />
+                    <MessageCard item={item.snippet} />
                 </View>
             ))}
-        </View>
+            {isSheetShowing && (
+                <Text>aaa</Text>
+            )}
+        </View >
     );
 }
 
 const styles = StyleSheet.create({
+    contentContainer: {
+        flex: 1,
+        padding: 36,
+        alignItems: 'center',
+    },
     view: {
         flex: 1,
     },
