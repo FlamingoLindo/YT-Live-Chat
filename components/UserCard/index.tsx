@@ -1,17 +1,21 @@
-import { step_3 } from "@/mock_data";
+import { Item } from "@/services/dto/messages";
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { t } from "i18next";
 import { useState } from "react";
 import { Image, Modal, Pressable, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import MessageCard from "../MessageCard";
 
-export default function UserCard() {
-    const [selectedItem, setSelectedItem] = useState<typeof step_3.items[0] | null>(null);
+interface UserCardProps {
+    items: Item[];
+}
+
+export default function UserCard({ items }: UserCardProps) {
+    const [selectedItem, setSelectedItem] = useState<Item | null>(null);
     const [bannedUsers, setBannedUsers] = useState<Set<string>>(new Set());
 
     return (
         <View style={styles.view}>
-            {step_3.items.map((item) => (
+            {items.map((item) => (
                 <View key={item.id}>
                     <TouchableOpacity onPress={() => setSelectedItem(item)}>
                         <View style={styles.container}>

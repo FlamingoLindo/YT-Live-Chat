@@ -1,15 +1,16 @@
 import { getRandomSuperChatColor } from '@/consts/colors';
 import { useTheme } from '@/hooks/useTheme';
+import { Snippet } from "@/services/dto/messages";
 import { StyleSheet, Text, View } from "react-native";
 
 interface MessageCardProps {
-    item: any;
+    item: Snippet;
     isBanned?: boolean;
 }
-
 export default function MessageCard({ item, isBanned }: MessageCardProps) {
     const { colors } = useTheme();
     const isSuperChat = item.superChatDetails ? true : false;
+    const superChatComment = item.superChatDetails?.userComment ?? item.displayMessage;
 
     return (
         <View style={[
@@ -26,13 +27,15 @@ export default function MessageCard({ item, isBanned }: MessageCardProps) {
                     {item.superChatDetails.amountDisplayString}
                 </Text>
             )}
-            <Text style={[
-                styles.msg,
-                { color: colors.text },
-                isBanned && styles.bannedText,
-            ]}>
-                {item.displayMessage}
-            </Text>
+            {(!isSuperChat || superChatComment) && (
+                <Text style={[
+                    styles.msg,
+                    { color: colors.text },
+                    isBanned && styles.bannedText,
+                ]}>
+                    {superChatComment}
+                </Text>
+            )}
         </View>
     );
 }

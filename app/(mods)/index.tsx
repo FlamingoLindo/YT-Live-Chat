@@ -1,8 +1,10 @@
 import { baseColors } from "@/consts/colors";
 import { useTheme } from "@/hooks/useTheme";
-import { moderators } from "@/mock_data";
+import { ModeratorsDTO } from "@/services/dto/moderators";
+import { ytModerators, ytSearch, ytVideos } from "@/services/yt";
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from "expo-router";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Image, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -12,6 +14,7 @@ export default function Mods() {
     const insets = useSafeAreaInsets();
     const router = useRouter();
     const { t } = useTranslation();
+    const [moderatorItems, setModeratorItems] = useState<ModeratorsDTO["items"]>([]);
 
     const colors = {
         background: isDarkMode ? baseColors.darkBg : baseColors.lightBg,
@@ -21,7 +24,41 @@ export default function Mods() {
         border: isDarkMode ? "#3a3a3a" : "#e0e0e0",
     };
 
-    const hasModerators = moderators.items && moderators.items.length > 0;
+    useEffect(() => {
+        let isMounted = true;
+
+        async function fetchModerators() {
+            try {
+                const searchResult = await ytSearch({ channelId: process.env.EXPO_PUBLIC_CHANNEL_ID });
+                const videoId = searchResult.items?.[0]?.id?.videoId;
+                if (!videoId) {
+                    if (isMounted) setModeratorItems([]);
+                    return;
+                }
+
+                const videoResult = await ytVideos({ videoId });
+                const liveChatId = videoResult.items?.[0]?.liveStreamingDetails?.activeLiveChatId;
+                if (!liveChatId) {
+                    if (isMounted) setModeratorItems([]);
+                    return;
+                }
+
+                const moderatorsResult = await ytModerators({ liveChatId });
+                if (isMounted) setModeratorItems(moderatorsResult.items ?? []);
+            } catch (error) {
+                if (isMounted) setModeratorItems([]);
+                // console.error(error);
+            }
+        }
+
+        fetchModerators();
+
+        return () => {
+            isMounted = false;
+        };
+    }, []);
+
+    const hasModerators = moderatorItems.length > 0;
 
     return (
         <View
@@ -56,7 +93,7 @@ export default function Mods() {
                 </View>
             ) : (
                 <ScrollView style={styles.scrollView} contentContainerStyle={styles.scrollContent}>
-                    {moderators.items.map((m, index) => (
+                    {moderatorItems.map((m, index) => (
                         <View
                             key={m.id}
                             style={[
@@ -65,7 +102,7 @@ export default function Mods() {
                                     backgroundColor: colors.card,
                                     borderBottomColor: colors.border,
                                 },
-                                index === moderators.items.length - 1 && { borderBottomWidth: 0 }
+                                index === moderatorItems.length - 1 && { borderBottomWidth: 0 }
                             ]}
                         >
                             <Image

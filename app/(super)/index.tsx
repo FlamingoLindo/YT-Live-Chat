@@ -1,9 +1,10 @@
 import { baseColors } from "@/consts/colors";
 import { useTheme } from "@/hooks/useTheme";
-import { superChats } from "@/mock_data";
+import { SuperChatItem } from "@/services/dto/superChats";
+import { ytSuperChats } from "@/services/yt";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useRouter } from "expo-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Image, Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -14,7 +15,7 @@ export default function Super() {
     const router = useRouter();
 
     const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
-    const [chats, setChats] = useState(superChats.super_chats ?? []);
+    const [chats, setChats] = useState<SuperChatItem[]>([]);
     const { t } = useTranslation();
 
     const colors = {
@@ -24,6 +25,18 @@ export default function Super() {
         card: isDarkMode ? baseColors.darkBg3 : "#f5f5f5",
         border: isDarkMode ? "#3a3a3a" : "#e0e0e0",
     };
+
+    useEffect(() => {
+        async function fetchSuperChats() {
+            try {
+                const result = await ytSuperChats();
+                setChats(result.items ?? []);
+            } catch (e) {
+                console.error(e);
+            }
+        }
+        fetchSuperChats();
+    }, []);
 
     const hasSuperChats = chats.length > 0;
 
@@ -42,13 +55,11 @@ export default function Super() {
 
     return (
         <View
-            style={
-                [styles.container,
-                {
-                    backgroundColor: colors.background,
-                    paddingTop: insets.top,
-                    paddingBottom: insets.bottom
-                }]}
+            style={[styles.container, {
+                backgroundColor: colors.background,
+                paddingTop: insets.top,
+                paddingBottom: insets.bottom
+            }]}
         >
             <View style={styles.header}>
                 <Pressable onPress={() => router.back()} style={styles.backButton}>
@@ -56,28 +67,23 @@ export default function Super() {
                     <Text style={[styles.backText, { color: colors.text }]}>{t('Back')}</Text>
                 </Pressable>
 
-                {selectedIds.size > 0 ? (
+                {selectedIds.size > 0 && (
                     <Pressable onPress={() => removeSuperChats(selectedIds)} style={styles.clearButton}>
                         <Ionicons name="checkmark-done" size={24} color={colors.text} />
-                        <Text
-                            style={[styles.backText,
-                            { color: colors.text }]}>
+                        <Text style={[styles.backText, { color: colors.text }]}>
                             {t('Clear Super Chats')} ({selectedIds.size})
                         </Text>
                     </Pressable>
-                ) : (<></>)}
+                )}
             </View>
+
             {!hasSuperChats ? (
                 <View style={styles.emptyState}>
                     <Ionicons name="chatbubble-ellipses-outline" size={64} color={colors.subtext} />
-                    <Text
-                        style={[styles.emptyStateText,
-                        { color: colors.text }]}>
+                    <Text style={[styles.emptyStateText, { color: colors.text }]}>
                         {t('No super chats')}
                     </Text>
-                    <Text
-                        style={[styles.emptyStateSubtext,
-                        { color: colors.subtext }]}>
+                    <Text style={[styles.emptyStateSubtext, { color: colors.subtext }]}>
                         {t('There are no super chats yet')}
                     </Text>
                 </View>
@@ -97,18 +103,18 @@ export default function Super() {
                             ]}
                         >
                             <Image
-                                source={{ uri: s.authorDetails.profileImageUrl }}
+                                source={{ uri: s.snippet.supporterDetails.profileImageUrl }}
                                 style={styles.profileImage}
                             />
                             <View style={styles.userInfo}>
                                 <Text style={[styles.userData, { color: colors.text }]}>
-                                    {s.authorDetails.displayName}
+                                    {s.snippet.supporterDetails.displayName}
                                 </Text>
                                 <Text style={[styles.userData, { color: colors.text }]}>
-                                    {s.snippet.superChatDetails.userComment}
+                                    {s.snippet.commentText}
                                 </Text>
                                 <Text style={[styles.userData, { color: colors.text }]}>
-                                    {s.snippet.superChatDetails.amountDisplayString}
+                                    {s.snippet.displayString}
                                 </Text>
                             </View>
                             {selectedIds.has(s.id) && (
@@ -119,7 +125,7 @@ export default function Super() {
                 </ScrollView>
             )}
         </View>
-    )
+    );
 }
 
 const styles = StyleSheet.create({

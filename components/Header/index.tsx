@@ -1,11 +1,15 @@
 import { baseColors } from "@/consts/colors";
 import { useInsets } from "@/hooks/useInsets";
-import { step_1, step_2 } from "@/mock_data";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-export default function Header() {
+interface HeaderProps {
+    title: string,
+    viewerCount: string | undefined
+}
+
+export default function Header({ title, viewerCount }: HeaderProps) {
     const insets = useInsets();
     const [isShowingCount, setIsShowingCount] = useState(true);
 
@@ -15,12 +19,12 @@ export default function Header() {
                 <View >
                 </View>
                 <Text style={styles.title} numberOfLines={2}>
-                    {step_1.items[0].snippet.title}
+                    {title}
                 </Text>
                 <TouchableOpacity onPress={() => setIsShowingCount(!isShowingCount)}>
                     <View style={styles.viewerBadge}>
                         <Ionicons name="person" size={20} color={'white'} />
-                        <Text style={styles.viewerCount}>{isShowingCount ? step_2.items[0].liveStreamingDetails.concurrentViewers : '******'}</Text>
+                        <Text style={styles.viewerCount}>{isShowingCount ? viewerCount : '******'}</Text>
                     </View>
                 </TouchableOpacity>
             </View>

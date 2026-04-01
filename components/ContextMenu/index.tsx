@@ -21,8 +21,9 @@ export default function ContextMenu({ onToggleStream, showStream }: Props) {
 
     const options = [
         { id: 1, title: showStream ? t('Close Preview') : t('Open Preview'), onPress: onToggleStream },
-        { id: 2, title: t('Super chats'), onPress: () => { router.navigate('/(super)'), toggleOpen() } },
-        { id: 3, title: t('Moderators'), onPress: () => { router.navigate('/(mods)'), toggleOpen() } },
+        // Currently going to keep out this screen from the project, because it involves OAuth2
+        // { id: 2, title: t('Super chats'), onPress: () => { router.navigate('/(super)'), toggleOpen() } },
+        { id: 3, title: t('Moderators'), onPress: () => { router.navigate('/(mods)'), toggleOpen() } }, 
         {
             id: 4,
             title: t('Change to PT/BR'),
