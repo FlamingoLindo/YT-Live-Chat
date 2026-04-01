@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { StyleSheet, Text, useColorScheme, View } from "react-native";
 
 interface MessageCardProps {
     item: any;
+    isBanned?: boolean;
 }
 
 const superColors = {
@@ -16,25 +18,36 @@ function getColor<T>(obj: Record<string, T>): T {
     return values[Math.floor(Math.random() * values.length)];
 }
 
-export default function MessageCard({ item }: MessageCardProps) {
+export default function MessageCard({ item, isBanned }: MessageCardProps) {
     const colorScheme = useColorScheme();
     const isDarkMode = colorScheme === "dark";
-
+    const [isDeleted, setIsDeleted] = useState(false);
     const isSuperChat = item.superChatDetails ? true : false;
 
     return (
-        <View style={[styles.view, { backgroundColor: isSuperChat ? getColor(superColors) : "" }]}>
+        <View style={[
+            styles.view,
+            { backgroundColor: isSuperChat ? getColor(superColors) : "" },
+            isBanned && styles.bannedView,
+        ]}>
             {isSuperChat && item.superChatDetails && (
-                <Text style={[styles.msg, { color: isDarkMode ? "white" : "black", fontWeight: "bold" }]}>
+                <Text style={[
+                    styles.msg,
+                    { color: isDarkMode ? "white" : "black", fontWeight: "bold" },
+                    isBanned && styles.bannedText,
+                ]}>
                     {item.superChatDetails.amountDisplayString}
                 </Text>
             )}
-            <Text
-                style={[styles.msg, { color: isDarkMode ? "white" : "black" }]}>
+            <Text style={[
+                styles.msg,
+                { color: isDarkMode ? "white" : "black" },
+                isBanned && styles.bannedText,
+            ]}>
                 {item.displayMessage}
             </Text>
         </View>
-    )
+    );
 }
 
 const styles = StyleSheet.create({
@@ -46,5 +59,12 @@ const styles = StyleSheet.create({
     },
     msg: {
         fontSize: 15
-    }
+    },
+    bannedView: {
+        opacity: 0.4,
+    },
+    bannedText: {
+        textDecorationLine: 'line-through',
+        color: 'gray',
+    },
 });
