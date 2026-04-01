@@ -14,15 +14,11 @@ export class ChannelNotLiveError extends Error {
     }
 }
 
-type SearchParams = {
-    channelId?: string;
-}
 
-export async function ytSearch({ channelId }: SearchParams): Promise<SearchDTO> {
-    if (!channelId) throw new Error("No channel provided");
+export async function ytSearch(): Promise<SearchDTO> {
     const params = new URLSearchParams({
         part: 'snippet',
-        channelId,
+        channelId: `${process.env.EXPO_PUBLIC_CHANNEL_ID}`,
         type: 'video',
         eventType: 'live',
         maxResults: '1',

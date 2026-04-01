@@ -32,7 +32,7 @@ export default function Index() {
   useEffect(() => {
     async function fetchLive() {
       try {
-        const result = await ytSearch({ channelId: process.env.EXPO_PUBLIC_CHANNEL_ID });
+        const result = await ytSearch();
         setLiveData(result);
         setStreamState("live");
       } catch (e) {

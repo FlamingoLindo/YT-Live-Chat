@@ -29,7 +29,7 @@ export default function Mods() {
 
         async function fetchModerators() {
             try {
-                const searchResult = await ytSearch({ channelId: process.env.EXPO_PUBLIC_CHANNEL_ID });
+                const searchResult = await ytSearch();
                 const videoId = searchResult.items?.[0]?.id?.videoId;
                 if (!videoId) {
                     if (isMounted) setModeratorItems([]);
@@ -47,7 +47,7 @@ export default function Mods() {
                 if (isMounted) setModeratorItems(moderatorsResult.items ?? []);
             } catch (error) {
                 if (isMounted) setModeratorItems([]);
-                // console.error(error);
+                console.error(error);
             }
         }
 
