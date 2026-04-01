@@ -1,15 +1,27 @@
+import { baseColors } from '@/consts/colors';
+import { useTheme } from '@/hooks/useTheme';
 import { Stack } from 'expo-router';
-import { StatusBar, useColorScheme } from 'react-native';
+import { StatusBar, View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 export default function StackLayout() {
-  const colorScheme = useColorScheme();
-  const isDarkMode = colorScheme === "dark";
+  const { isDarkMode } = useTheme();
+  const bgColor = isDarkMode ? baseColors.darkBg : baseColors.lightBg;
 
   return (
-    <SafeAreaProvider>
-      <StatusBar barStyle={isDarkMode ? "light-content" : "dark-content"} />
-      <Stack screenOptions={{ headerShown: false }} />
-    </SafeAreaProvider>
+    <View style={{ flex: 1, backgroundColor: bgColor }}>
+      <SafeAreaProvider>
+        <StatusBar 
+          barStyle={isDarkMode ? "light-content" : "dark-content"}
+          backgroundColor={bgColor}
+          translucent={false}
+        />
+        <Stack 
+          screenOptions={{
+            headerShown: false,
+          }} 
+        />
+      </SafeAreaProvider>
+    </View>
   );
 }

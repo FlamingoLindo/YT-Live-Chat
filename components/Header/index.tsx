@@ -1,13 +1,16 @@
+import { baseColors } from "@/consts/colors";
+import { useInsets } from "@/hooks/useInsets";
 import { step_1, step_2 } from "@/mock_data";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-export default function Header({ top }: { top: number }) {
+export default function Header() {
+    const insets = useInsets();
     const [isShowingCount, setIsShowingCount] = useState(true);
 
     return (
-        <View style={[styles.container, { paddingTop: top + 12 }]}>
+        <View style={[styles.container, { paddingTop: insets.top + 12 }]}>
             <View style={styles.inner}>
                 <View >
                 </View>
@@ -28,9 +31,9 @@ export default function Header({ top }: { top: number }) {
 const styles = StyleSheet.create({
     container: {
         width: '100%',
-        backgroundColor: '#0f0f0f',
+        backgroundColor: baseColors.darkBg,
         borderBottomWidth: 1,
-        borderBottomColor: '#2a2a2a',
+        borderBottomColor: baseColors.darkBgAlt,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.4,
@@ -46,19 +49,19 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#1e1e1e',
+        backgroundColor: baseColors.darkBg2,
         paddingHorizontal: 10,
         paddingVertical: 3,
         borderRadius: 20,
         gap: 5,
     },
     viewerCount: {
-        color: '#e0e0e0',
+        color: baseColors.lightGray,
         fontSize: 20,
         fontWeight: '600',
     },
     title: {
-        color: '#ffffff',
+        color: baseColors.darkText,
         fontSize: 13,
         fontWeight: '700',
         letterSpacing: 0.3,

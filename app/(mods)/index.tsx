@@ -1,23 +1,23 @@
+import { baseColors } from "@/consts/colors";
+import { useTheme } from "@/hooks/useTheme";
 import { moderators } from "@/mock_data";
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from "expo-router";
 import { useTranslation } from "react-i18next";
-import { Image, Pressable, ScrollView, StyleSheet, Text, useColorScheme, View } from "react-native";
+import { Image, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function Mods() {
-    const colorScheme = useColorScheme();
-    const isDarkMode = colorScheme === "dark";
+    const { isDarkMode } = useTheme();
     const insets = useSafeAreaInsets();
     const router = useRouter();
-
     const { t } = useTranslation();
 
     const colors = {
-        background: isDarkMode ? "#1a1a1a" : "#ffffff",
-        text: isDarkMode ? "#ffffff" : "#000000",
+        background: isDarkMode ? baseColors.darkBg : baseColors.lightBg,
+        text: isDarkMode ? baseColors.darkText : baseColors.lightText,
         subtext: isDarkMode ? "#aaaaaa" : "#666666",
-        card: isDarkMode ? "#2e2e2e" : "#f5f5f5",
+        card: isDarkMode ? baseColors.darkBg3 : "#f5f5f5",
         border: isDarkMode ? "#3a3a3a" : "#e0e0e0",
     };
 

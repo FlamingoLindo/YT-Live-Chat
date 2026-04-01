@@ -1,26 +1,27 @@
 import ContextMenu from "@/components/ContextMenu";
 import Header from "@/components/Header";
 import UserCard from "@/components/UserCard";
-import { useRef, useState } from "react";
-import { ScrollView, StyleSheet, useColorScheme, View } from "react-native";
+import { useTheme } from "@/hooks/useTheme";
+import { useToggle } from "@/hooks/useToggle";
+import { useRef } from "react";
+import { ScrollView, StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { WebView } from 'react-native-webview';
 import '../i18n';
 
 export default function Index() {
-  const colorScheme = useColorScheme();
-  const isDarkMode = colorScheme === "dark";
+  const { isDarkMode } = useTheme();
   const insets = useSafeAreaInsets();
   const scrollRef = useRef<ScrollView>(null);
 
-  const [showStream, setShowStream] = useState(false);
+  const [showStream, toggleShowStream] = useToggle(false);
 
   const STREAM_ID = "4Uhp_xRikaU";
 
 
   return (
     <View style={{ flex: 1 }}>
-      <Header top={insets.top} />
+      <Header />
 
       <ScrollView
         ref={scrollRef}
@@ -30,7 +31,7 @@ export default function Index() {
         <UserCard />
       </ScrollView>
 
-      <ContextMenu insets={insets} onToggleStream={() => setShowStream(prev => !prev)} showStream={showStream} />
+      <ContextMenu onToggleStream={toggleShowStream} showStream={showStream} />
 
       {showStream && (
         <WebView
