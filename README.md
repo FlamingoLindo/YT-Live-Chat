@@ -4,7 +4,7 @@ YT-Live-Chat is an Expo and React Native app for monitoring YouTube live chat in
 
 It is designed for creators and moderators who want a dedicated chat view with stream preview controls, user role badges, and localization support.
 
-<https://github.com/user-attachments/assets/ed4b5e08-1124-44f7-8dae-62f1a2f0efe9>
+<https://github.com/user-attachments/assets/2f16f973-8801-45c0-937a-f38dad547980>
 
 ## Features
 
